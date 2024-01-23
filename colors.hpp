@@ -1,7 +1,7 @@
 /**
  * @file colors.hpp
  * @author Leif Huender
- * @brief 
+ * @brief The colors listed are from the Nord color theme
  * @version 0.1
  * @date 2024-01-19
  * 
