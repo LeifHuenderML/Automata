@@ -1,6 +1,6 @@
 # Automata Architecture Documentation
 
-![Architecture Header](../images/ArchitectureHeader.png)
+![Architecture Header](../Images/ArchitectureHeader.png)
 
 ## 1. GameController
 
@@ -68,7 +68,6 @@
 
 - `MenuPage`: Displays the main menu and options. It handles navigation between different menu screens (main menu, options, rules, credits) and triggers actions like starting the game or exiting the application.
 - `GamePage`: Displays the game grid, status information (score, level), and in-game menus (pause menu). It updates in real-time based on the game state and user interactions.
-
 
 ## 5. Environment
 
