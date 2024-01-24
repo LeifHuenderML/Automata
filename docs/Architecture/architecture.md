@@ -26,26 +26,28 @@
 
 ### CellManager Technical Details
 
-- Implements efficient data structures (e.g., arrays, matrices) to store the state of each cell and to perform batch updates on the grid.
+- Implements efficient data structures (arrays, matrices) to store the state of each cell and to perform batch updates on the grid.
 - Employs optimized algorithms for updating cells based on cellular automata rules, minimizing unnecessary calculations.
 - Facilitates the extension of cell behavior through a well-defined inheritance hierarchy, where each subclass of `Cell` can override specific methods to alter its behavior.
 
 #### Subclasses of Cell
 
-- `BaseCell`: Implements the basic Conway's Game of Life logic. It includes methods for calculating the next state based on the traditional rules (e.g., underpopulation, overpopulation, reproduction).
-- `CustomCell`: Implements variations of the basic logic or entirely new rules for more complex behavior. This can include cells with different survival rules, reproduction rates, or interactions with other types of cells.
+- `BaseCell`: Implements the basic Conway's Game of Life logic. It includes methods for calculating the next state based on the traditional rules (underpopulation, overpopulation, reproduction).
+- `HighLife`: Inherits the base class `Cell`, but adds the ability for cells to come to life if there are exactly six neighboring cells.
+- `The Rainbow Game of Life`: Inherits the any `Cell` class, but colors cells based on the average color of parent cells.
+- `Dynamic`: Inherits the any `Cell` class, but adds a vast aditional set of rules that dynamically change during game play causing the RL Model to have to be good at adapting to a more general set of environmental changes.
 
 ## 3. RLEngine
 
 ### RLEngine Responsibilities
 
-- Manages the reinforcement learning aspect using the PyTorch API, a powerful library for machine learning and neural network computation.
+- Manages the reinforcement learning aspect using the C++ PyTorch API, a powerful library for machine learning and neural network computation.
 - Trains models to learn optimal strategies under different conditions by interacting with the game environment, receiving feedback, and adjusting strategies based on the rewards received.
 - Interfaces with CellManager to apply learned strategies to the cell grid and observe the results, effectively allowing the AI to control aspects of the game or simulate intelligent behavior.
 
 ### RLEngine Technical Details
 
-- Implements reinforcement learning algorithms (e.g., Q-learning, policy gradients) that can operate on the state representations provided by the CellManager.
+- Implements reinforcement learning algorithms (Q-learning, policy gradients) that can operate on the state representations provided by the CellManager.
 - Uses PyTorch's automatic differentiation and neural network modules to build and train models that can predict the value of actions or directly output optimal actions.
 - Integrates with the game loop, allowing the AI to periodically receive state updates, perform actions, and receive feedback in the form of rewards.
 
@@ -54,7 +56,7 @@
 ### UIManager Responsibilities
 
 - Manages all user interface elements, including buttons, menus, and status displays. This involves rendering text, handling layout, and responding to user interactions.
-- Handles user inputs (e.g., button clicks, menu selections) and translates them into actions within the game, such as starting a new game, pausing, or adjusting settings.
+- Handles user inputs (button clicks, menu selections) and translates them into actions within the game, such as starting a new game, pausing, or adjusting settings.
 
 ### UIManager Technical Details
 
@@ -64,8 +66,9 @@
 
 #### UIManager Subcomponents
 
-- `MenuPage`: Displays the main menu and options. It handles navigation between different menu screens (e.g., main menu, options, credits) and triggers actions like starting the game or exiting the application.
-- `GamePage`: Displays the game grid, status information (e.g., score, level), and in-game menus (e.g., pause menu). It updates in real-time based on the game state and user interactions.
+- `MenuPage`: Displays the main menu and options. It handles navigation between different menu screens (main menu, options, rules, credits) and triggers actions like starting the game or exiting the application.
+- `GamePage`: Displays the game grid, status information (score, level), and in-game menus (pause menu). It updates in real-time based on the game state and user interactions.
+
 
 ## 5. Environment
 
@@ -83,7 +86,7 @@
 
 ## Interactions
 
-- `GameController <-> UIManager`: GameController receives user inputs from UIManager (e.g., menu selections, in-game commands) and updates the game state accordingly. It also sends state updates to UIManager to reflect changes in the game, such as transitioning between menus and the game scene.
-- `GameController <-> CellManager`: GameController triggers updates in CellManager based on game state (e.g., starting a new simulation, pausing) and user inputs (e.g., modifying cell states, changing simulation parameters).
+- `GameController <-> UIManager`: GameController receives user inputs from UIManager (menu selections, in-game commands) and updates the game state accordingly. It also sends state updates to UIManager to reflect changes in the game, such as transitioning between menus and the game scene.
+- `GameController <-> CellManager`: GameController triggers updates in CellManager based on game state (starting a new simulation, pausing) and user inputs (e.g., modifying cell states, changing simulation parameters).
 - `CellManager <-> RLEngine`: CellManager provides cell grid states to RLEngine for training and strategy application. RLEngine, in turn, sends back actions or policy updates that CellManager uses to adjust cell behavior or simulation parameters.
 - `CellManager <-> Environment`: The Environment imposes conditions on the cell grid, such as altering resource availability or introducing hazards. CellManager updates cell states based on these conditions, ensuring that the simulation reflects the dynamic interplay between cells and their environment.
