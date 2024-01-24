@@ -2,7 +2,7 @@
 
 ![Automata Header](docs/images/AutomataLogo.png)
 
-Automata is an innovative game inspired by John Conway's Game of Life, utilizing a grid of cells as its primary structure. This game extends the classical cellular automaton concept by incorporating multiple rule sets, each offering a distinct layer of complexity and interaction dynamics. This was a collaborative project between Leif Huender, Aaron Froes, and Shaun Swant.
+Automata is an innovative game inspired by John Conway's Game of Life, utilizing a grid of cells as its primary structure. This game extends the classical cellular automaton concept by incorporating multiple rule sets, each offering a distinct layer of complexity and interaction dynamics. Automata utilizes the Nord color pallate and a minimalistic style. This was a collaborative project between Leif Huender, Aaron Froes, and Shaun Swant.
 
 ## Installation
 
