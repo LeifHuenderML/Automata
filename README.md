@@ -1,7 +1,6 @@
 # Automata
 
 ![Automata Header](Docs/Images/AutomataLogo.png)
-
 Automata is an innovative game inspired by John Conway's Game of Life, utilizing a grid of cells as its primary structure. This game extends the classical cellular automaton concept by incorporating multiple rule sets, each offering a distinct layer of complexity and interaction dynamics.
 
 ## Rule Sets
