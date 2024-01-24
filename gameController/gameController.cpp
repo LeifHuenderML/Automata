@@ -40,3 +40,59 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+#include "GameController.hpp"
+
+void GameController::playMusic(){
+    //load a soundtrack and error check
+    sf::Music music;
+    if (!music.openFromFile("music/nordic study session ~ chill lofi beats Credit: @CozyNordic.mp3")){
+        throw std::runtime_error("Error opening music");
+    }
+    //play the music
+    music.play();
+}
+
+void GameController::run(){
+    //create the main window
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Tile Window");
+
+    int grid[rows][cols] = {};
+
+    for(int i = 0; i < rows; ++i){
+        for(int j = 0; j < cols; ++j){
+            grid[i][j] = (i + j) / 2;
+        }
+    }
+ 
+    playMusic();
+ 
+    // Start the game loop
+    while (window.isOpen())
+    {
+        // Process events
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // Close window: exit
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+ 
+        // Clear screen
+        window.clear();
+ 
+        for(int i = 0; i < rows; ++i){
+                for(int j = 0; j < cols; ++j){
+                    sf::RectangleShape tile(sf::Vector2f(tileSize, tileSize));
+                    tile.setPosition(j * tileSize, i * tileSize);
+                    tile.setFillColor(grid[i][j] == 1 ? sf::Color::White : sf::Color::Black);
+                    window.draw(tile);
+                }
+            }
+
+ 
+        // Update the window
+        window.display();
+    }
+}
