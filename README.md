@@ -28,7 +28,8 @@ The game features a variety of rule sets, allowing players to explore different 
 
 Automata is not solely a game; it is also a platform for research. A significant facet of Automata's design is the exploration of how advanced state of the art Convolutional Neural Networks (CNNs) learn and evolve through self-play. The game offers a unique setting for investigating the capacity of these networks to adapt, survive, and proliferate within a simulated cellular environment, marking the intersection of gaming and scientific research.
 
-For those interested in the in-depth research and methodologies behind the development of Automata, particularly the integration and performance of the RL Model, you are encouraged to consult the paper [Adaptive Dynamics in Cellular Automata: Exploring the Intersection of Machine Learning and Self-Organizing Systems in Automata](docs/papers/LeifsPaper/AdaptiveDynamicsinCellularAutomataExploring theIntersectionofMachineLearningandSelfOrganizingSystemsinAutomata.docx) by Leif Huender.
+For those interested in the in-depth research and methodologies behind the development of Automata, particularly the integration and performance of the RL Model, you are encouraged to consult the paper [Adaptive Dynamics in Cellular Automata: Exploring the Intersection of Machine Learning and Self-Organizing Systems in Automata](docs/papers/LeifsPaper/AdaptiveDynamicsinCellularAutomataExploringtheIntersectionofMachineLearningandSelfOrganizingSystemsinAutomata.md) by Leif Huender.
+ by Leif Huender.
 
 ## Conclusion
 
