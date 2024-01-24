@@ -1,4 +1,4 @@
-<img src="../images/ArchitectureHeader.png" alt="Architecture Header" width="1300" height="300"/>
+<img src="../images/ArchitectureHeader.png" alt="Architecture Header" width="1300"/>
 
 # Automata Architecture Documentation
 
