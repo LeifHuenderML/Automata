@@ -1,6 +1,6 @@
 # Automata Architecture Documentation
 
-![Architecture Header](../Images/ArchitectureHeader.png)
+![Architecture Header](../images/ArchitectureHeader.png)
 
 ## 1. GameController
 
