@@ -44,8 +44,24 @@
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
 
-class GameController{
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
+class GameController{
+private:
+    //private data members 
+    const int windowHeight = 1600;
+    const int windowWidth = 1800;
+    const int rows = 10;
+    const int cols = 10;
+    const int tileSize = 5;
+    //private function members
+    void playMusic();
+public:
+    GameController();
+    void run();
 };
 
 #endif
