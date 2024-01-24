@@ -4,6 +4,14 @@
 
 Automata is an innovative game inspired by John Conway's Game of Life, utilizing a grid of cells as its primary structure. This game extends the classical cellular automaton concept by incorporating multiple rule sets, each offering a distinct layer of complexity and interaction dynamics. This was a collaborative project between Leif Huender, Aaron Froes, and Shaun Swant.
 
+## Installation
+
+Please refer to our [installation guide](docs/architecture/installation/installation.md) here for setting up and running Automata.
+
+## For Collaborators
+
+Please refer to our [style guide](docs/styleGuide/styleGuide.md) before making any changes to the repository.
+
 ## Rule Sets
 
 The game features a variety of rule sets, allowing players to explore different aspects of cellular automaton theory:
