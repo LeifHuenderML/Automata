@@ -59,3 +59,11 @@ reflect changes in the game, such as transitioning between menus and the game sc
 
 */
 
+#ifndef CellManager_HPP
+#define CellManager_HPP 
+
+class CellManager{
+    
+}
+
+#endif
