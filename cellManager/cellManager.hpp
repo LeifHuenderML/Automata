@@ -40,3 +40,22 @@
  * THE SOFTWARE.
  */
 
+/*
+DELETE EVENTUALLY THIS IS JUST TO HELP FIGURE OUT FRAME WORK
+- `GameController <-> UIManager`: GameController receives user inputs from UIManager (menu selections, 
+in-game commands) and updates the game state accordingly. It also sends state updates to UIManager to 
+reflect changes in the game, such as transitioning between menus and the game scene.
+
+- `GameController <-> CellManager`: GameController triggers updates in CellManager based on game state 
+(starting a new simulation, pausing) and user inputs (e.g., modifying cell states, changing simulation parameters).
+
+- `CellManager <-> RLEngine`: CellManager provides cell grid states to RLEngine for training and strategy
+ application. RLEngine, in turn, sends back actions or policy updates that CellManager uses to adjust cell 
+ behavior or simulation parameters.
+
+- `CellManager <-> Environment`: The Environment imposes conditions on the cell grid, such as altering resource
+ availability or introducing hazards. CellManager updates cell states based on these conditions, ensuring that the 
+ simulation reflects the dynamic interplay between cells and their environment.
+
+*/
+
