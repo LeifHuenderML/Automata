@@ -54,7 +54,7 @@ reflect changes in the game, such as transitioning between menus and the game sc
  behavior or simulation parameters.
 
 - `CellManager <-> Environment`: The Environment imposes conditions on the cell grid, such as altering resource
- availability or introducing hazards. CellManager updates cell states based on these conditions, ensuring that the 
+ availability or introd ucing hazards. CellManager updates cell states based on these conditions, ensuring that the 
  simulation reflects the dynamic interplay between cells and their environment.
 
 */
