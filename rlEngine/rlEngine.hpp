@@ -41,3 +41,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+
+#ifndef RLENGINE_HPP
+#define RLENGINE_HPP
+
+#include <torch/torch.h>
+#include <torch/script.h>
+
+#include <iostream>
+
+class tenstor{
+public:
+    void print(){
+        torch::Tensor tensor = torch::rand({2, 3});
+        std::cout << tensor << std::endl;
+    }
+};
+
+#endif
