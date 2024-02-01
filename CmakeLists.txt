@@ -26,15 +26,27 @@
 #  * THE SOFTWARE.
 #  */
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 project(Automata)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+# Set the path to PyTorch
+set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/pytorch/2.1.2_1")
+
+# Find packages
+find_package(Torch REQUIRED)
 
 set(SFML_DIR "/opt/homebrew/Cellar/sfml/2.6.1/lib/cmake/SFML")
 find_package(SFML 2.6.1 COMPONENTS graphics window system REQUIRED)
 
+# Set CXX flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Add your executable
 add_executable(Automata main.cpp)
 
-target_link_libraries(Automata sfml-graphics sfml-window sfml-system sfml-audio)
+# Link libraries
+target_link_libraries(Automata "${TORCH_LIBRARIES}" sfml-graphics sfml-window sfml-system sfml-audio)
