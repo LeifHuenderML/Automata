@@ -1,4 +1,4 @@
-# Install script for directory: /Users/leifhuender/Documents/Research/Current/Automata/Automata
+# Install script for directory: /Users/leifhuender/Documents/Research/Current/Automata
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/leifhuender/Documents/Research/Current/Automata/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

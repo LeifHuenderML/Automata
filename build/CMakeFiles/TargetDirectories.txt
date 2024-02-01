@@ -1,3 +1,3 @@
-/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles/Automata.dir
-/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles/edit_cache.dir
-/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles/rebuild_cache.dir
+/Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles/Automata.dir
+/Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles/edit_cache.dir
+/Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles/rebuild_cache.dir

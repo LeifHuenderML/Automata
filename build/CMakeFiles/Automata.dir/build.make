@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/leifhuender/Documents/Research/Current/Automata/Automata
+CMAKE_SOURCE_DIR = /Users/leifhuender/Documents/Research/Current/Automata
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/leifhuender/Documents/Research/Current/Automata/Automata/build
+CMAKE_BINARY_DIR = /Users/leifhuender/Documents/Research/Current/Automata/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Automata.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/Automata.dir/progress.make
 include CMakeFiles/Automata.dir/flags.make
 
 CMakeFiles/Automata.dir/main.cpp.o: CMakeFiles/Automata.dir/flags.make
-CMakeFiles/Automata.dir/main.cpp.o: /Users/leifhuender/Documents/Research/Current/Automata/Automata/main.cpp
+CMakeFiles/Automata.dir/main.cpp.o: /Users/leifhuender/Documents/Research/Current/Automata/main.cpp
 CMakeFiles/Automata.dir/main.cpp.o: CMakeFiles/Automata.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Automata.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Automata.dir/main.cpp.o -MF CMakeFiles/Automata.dir/main.cpp.o.d -o CMakeFiles/Automata.dir/main.cpp.o -c /Users/leifhuender/Documents/Research/Current/Automata/Automata/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Automata.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Automata.dir/main.cpp.o -MF CMakeFiles/Automata.dir/main.cpp.o.d -o CMakeFiles/Automata.dir/main.cpp.o -c /Users/leifhuender/Documents/Research/Current/Automata/main.cpp
 
 CMakeFiles/Automata.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Automata.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/leifhuender/Documents/Research/Current/Automata/Automata/main.cpp > CMakeFiles/Automata.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/leifhuender/Documents/Research/Current/Automata/main.cpp > CMakeFiles/Automata.dir/main.cpp.i
 
 CMakeFiles/Automata.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Automata.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/leifhuender/Documents/Research/Current/Automata/Automata/main.cpp -o CMakeFiles/Automata.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/leifhuender/Documents/Research/Current/Automata/main.cpp -o CMakeFiles/Automata.dir/main.cpp.s
 
 # Object files for target Automata
 Automata_OBJECTS = \
@@ -92,12 +92,82 @@ Automata_EXTERNAL_OBJECTS =
 
 Automata: CMakeFiles/Automata.dir/main.cpp.o
 Automata: CMakeFiles/Automata.dir/build.make
+Automata: /opt/homebrew/Cellar/pytorch/2.1.2_1/lib/libc10.dylib
 Automata: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-graphics.2.6.1.dylib
 Automata: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-window.2.6.1.dylib
 Automata: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-audio.2.6.1.dylib
+Automata: /opt/homebrew/Cellar/pytorch/2.1.2_1/lib/libtorch.dylib
+Automata: /opt/homebrew/Cellar/pytorch/2.1.2_1/lib/libtorch_cpu.dylib
+Automata: /opt/homebrew/lib/libprotobuf.25.2.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_check_op.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_leak_check.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_die_if_null.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_conditions.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_message.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_nullguard.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_examine_stack.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_format.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_proto.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_log_sink_set.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_sink.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_entry.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_marshalling.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_reflection.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_config.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_program_name.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_private_handle_accessor.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_commandlineflag.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_flags_commandlineflag_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_initialize.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_globals.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_internal_globals.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_raw_hash_set.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_hash.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_city.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_low_level_hash.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_hashtablez_sampler.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_statusor.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_status.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_cord.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_cordz_info.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_cord_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_cordz_functions.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_exponential_biased.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_cordz_handle.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_crc_cord_state.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_crc32c.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_crc_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_crc_cpu_detect.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_bad_optional_access.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_str_format_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_strerror.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_synchronization.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_stacktrace.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_symbolize.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_debugging_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_demangle_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_graphcycles_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_kernel_timeout_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_malloc_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_time.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_strings.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_string_view.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_throw_delegate.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_strings_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_base.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_spinlock_wait.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_int128.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_civil_time.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_time_zone.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_bad_variant_access.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_raw_logging_internal.2308.0.0.dylib
+Automata: /opt/homebrew/lib/libabsl_log_severity.2308.0.0.dylib
+Automata: /opt/homebrew/Cellar/pytorch/2.1.2_1/lib/libc10.dylib
 Automata: /opt/homebrew/Cellar/sfml/2.6.1/lib/libsfml-system.2.6.1.dylib
 Automata: CMakeFiles/Automata.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Automata"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Automata"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Automata.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -109,6 +179,6 @@ CMakeFiles/Automata.dir/clean:
 .PHONY : CMakeFiles/Automata.dir/clean
 
 CMakeFiles/Automata.dir/depend:
-	cd /Users/leifhuender/Documents/Research/Current/Automata/Automata/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/leifhuender/Documents/Research/Current/Automata/Automata /Users/leifhuender/Documents/Research/Current/Automata/Automata /Users/leifhuender/Documents/Research/Current/Automata/Automata/build /Users/leifhuender/Documents/Research/Current/Automata/Automata/build /Users/leifhuender/Documents/Research/Current/Automata/Automata/build/CMakeFiles/Automata.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/leifhuender/Documents/Research/Current/Automata/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/leifhuender/Documents/Research/Current/Automata /Users/leifhuender/Documents/Research/Current/Automata /Users/leifhuender/Documents/Research/Current/Automata/build /Users/leifhuender/Documents/Research/Current/Automata/build /Users/leifhuender/Documents/Research/Current/Automata/build/CMakeFiles/Automata.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/Automata.dir/depend
 
