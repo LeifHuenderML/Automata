@@ -41,3 +41,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+#include "rlEngine.hpp"
+
+
+void RLEngine::train(int episodes, float learningRate){
+    torch::optim::Adam optimizer(nn->parameters(), torch::optim::AdamOptions(0.001));
+    int batchSize = 32;
+    int currBatchSize = 0;
+    int totalReward = 0;
+    for(int episode = 0; episode < episodes; ++episode){
+        //resets the grid of cells to be all dead
+        //resets the other numbers that are dependent on each iteration
+        torch::Tensor state = env.reset();
+    
+        bool done = false;
+        while(!done){
+            torch::Tensor actionProbs = nn.forward(state);
+            torch::tensor action = sampleActions(actionProbs);
+            float reward = 0.0;
+            env.step(action, reward, done);
+
+            rememberBatch(state, action, reward, next_state);
+            ++currBatchSize;
+            if(batchSize == currBatchSize){
+                torch::Tensor batch = sampleBatch();
+                loss = calculate_loss(batch, nn);
+                optimizer.zero_grad();
+                loss.backward()
+                optimizer.step();
+            }
+            totalReward += reward;
+        }
+        if(episodes % 10 == 0){
+            std::cout << "Episode: " << episode << " Total Reward: " << totalReward << "\n";
+        }
+    }
+}
+
+torch::Tensor sampleActions(torch::Tensor actionProbs)
+
+void RLEngine::runTraining(){
+    int episodes = 100;
+    float lr = 0.01;
+    train(episodes, lr);
+}
+
+void RLEngine::test(){}
