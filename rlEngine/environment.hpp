@@ -31,26 +31,5 @@
 #include <torch/torch.h>
 
 class Env{
-protected:
-    torch::Tensor cells;
-    float target;
-    int envSize, totalLiving, maxSteps, currSteps;
-
-    void initTensors(const int& envSize);
-    torch::Tensor updateEnv(const torch::Tensor& actions){};
-    float calcReward(torch::Tensor determinedActions );
-    bool ifDone();
-
-public:
-    Env(float target = 1.0, int envSize = 1024, int maxSteps = 1000) : 
-        target(target), 
-        cells(torch::zeros({envSize, envSize}, torch::TensorOptions().dtype(torch::kBool))), 
-        envSize(envSize),
-        currSteps(0),
-        maxSteps(maxSteps)
-    {};
-    void step(const torch::Tensor& actions, float& reward, bool& done);
-    torch::Tensor reset();
 };
-
 #endif

@@ -52,17 +52,6 @@
 
 
 class RLEngine{
-private:
-    Env env;
-    PolicyNetwork nn;
-public:
-    RLEngine(): env(), nn() {}; // 1000 is for max training steps
-    void train(int episodes, float learningRate);
-    void runTraining();
-    void test();
-    void sampleActions
-    void rememberBatch
-    void sampleBatch
 
 };
 
