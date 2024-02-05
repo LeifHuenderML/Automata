@@ -9,37 +9,51 @@
 #include <algorithm>
 #include <vector>
 
-const int WIDTH = 1024;
-const int HEIGHT = 1024;
 const int RESOLUTION = 4;
-const int CELL_SIZE = WIDTH / RESOLUTION;
-const int COLS = WIDTH / RESOLUTION;
-const int ROWS = HEIGHT / RESOLUTION;
 
 struct Grid
 {
-    int m_Arr[COLS + 2][ROWS + 2];
-    int m_NewArr[COLS + 2][ROWS + 2];
+    const static int GRID_WIDTH = 2048;
+    const static int GRID_HEIGHT = 2048;
+    const static int COLS = GRID_WIDTH / RESOLUTION;
+    const static int ROWS = GRID_HEIGHT / RESOLUTION;
+
+    int **m_Arr;
+    int **m_NewArr;
     std::vector<int> m_Neighbors;
 
     Grid()
     {
-        for (int i = 0; i < COLS + 2; ++i)
+        m_Arr = new int *[COLS];
+        m_NewArr = new int *[COLS];
+        for (size_t i = 0; i < COLS + 2; ++i)
         {
-            for (int j = 0; j < ROWS + 2; ++j)
+            m_Arr[i] = new int[ROWS];
+            m_NewArr[i] = new int[ROWS];
+            for (size_t j = 0; j < ROWS + 2; ++j)
             {
-                // m_Arr[i][j] = 0;
                 m_NewArr[i][j] = 0;
                 m_Arr[i][j] = rand() % 2;
             }
         }
     }
 
+    ~Grid()
+    {
+        for (size_t i = 0; i < COLS; ++i)
+        {
+            delete[] m_Arr[i];
+            delete[] m_NewArr[i];
+        }
+        delete[] m_Arr;
+        delete[] m_NewArr;
+    }
+
     void update2DArray()
     {
-        for (int i = 1; i < COLS + 1; ++i)
+        for (size_t i = 1; i < COLS + 1; ++i)
         {
-            for (int j = 1; j < ROWS + 1; ++j)
+            for (size_t j = 1; j < ROWS + 1; ++j)
             {
                 int aliveNeighbors = findNeighbors(i, j);
                 if (m_Arr[i][j] && (aliveNeighbors < 2 || aliveNeighbors > 3))
@@ -55,9 +69,9 @@ struct Grid
                 m_NewArr[i][j] = m_Arr[i][j];
             }
         }
-        for (int i = 0; i < COLS + 2; ++i)
+        for (size_t i = 0; i < COLS + 2; ++i)
         {
-            for (int j = 0; j < ROWS + 2; ++j)
+            for (size_t j = 0; j < ROWS + 2; ++j)
             {
                 m_Arr[i][j] = m_NewArr[i][j];
             }
@@ -92,9 +106,9 @@ struct Grid
 
     void printArray()
     {
-        for (int i = 0; i < COLS + 2; ++i)
+        for (size_t i = 0; i < COLS + 2; ++i)
         {
-            for (int j = 0; j < ROWS + 2; ++j)
+            for (size_t j = 0; j < ROWS + 2; ++j)
             {
                 std::cout << m_Arr[i][j] << " ";
             }
@@ -104,38 +118,25 @@ struct Grid
 
     void drawArray(sf::RenderWindow &window)
     {
-        sf::Color color0(0, 0, 204);
-        sf::Color color1(255, 51, 255);
+        sf::Color color0(0, 0, 0);
+        sf::Color color1(255, 255, 255);
         sf::Color color2(255, 128, 0);
         sf::Color color3(153, 255, 255);
-        for (int i = 0; i < COLS + 1; ++i)
+        for (size_t i = 0; i < COLS + 1; ++i)
         {
-            for (int j = 0; j < ROWS + 1; ++j)
+            for (size_t j = 0; j < ROWS + 1; ++j)
             {
                 sf::RectangleShape shape;
 
-                shape.setSize(sf::Vector2f(WIDTH / COLS, HEIGHT / ROWS));
-                shape.setPosition((WIDTH / COLS) * i, (HEIGHT / ROWS) * j);
+                shape.setSize(sf::Vector2f(GRID_WIDTH / COLS, GRID_HEIGHT / ROWS));
+                shape.setPosition((GRID_WIDTH / COLS) * i, (GRID_HEIGHT / ROWS) * j);
                 if (m_Arr[i][j])
                 {
-                    int randnum = rand();
-                    int color = randnum % 3;
-                    if (color == 2)
-                    {
-                        shape.setFillColor(color0);
-                    }
-                    else if (color == 1)
-                    {
-                        shape.setFillColor(color1);
-                    }
-                    else
-                    {
-                        shape.setFillColor(color2);
-                    }
+                    shape.setFillColor(color0);
                     window.draw(shape);
                     continue;
                 }
-                shape.setFillColor(color3);
+                shape.setFillColor(color1);
                 window.draw(shape);
             }
         }
@@ -156,6 +157,9 @@ struct Grid
 
 int main(int argc, char const *argv[])
 {
+    const int WINDOW_WIDTH = 1024;
+    const int WINDOW_HEIGHT = 1024;
+
     srand(time(0));
 
     Grid grid;
@@ -163,7 +167,7 @@ int main(int argc, char const *argv[])
 
     bool play = false;
 
-    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Automota");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Automota");
     sf::View view(sf::Vector2f(350.f, 300.f), sf::Vector2f(300.f, 200.f));
     window.setView(view);
 
@@ -183,8 +187,12 @@ int main(int argc, char const *argv[])
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    int x = event.mouseButton.x / RESOLUTION;
-                    int y = event.mouseButton.y / RESOLUTION;
+                    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+                    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+                    // int x = event.mouseButton.x / RESOLUTION;
+                    // int y = event.mouseButton.y / RESOLUTION;
+                    int x = worldPos.x / RESOLUTION;
+                    int y = worldPos.y / RESOLUTION;
                     grid.switchState(x, y); // Toggle cell state
                     window.clear();
                     grid.drawArray(window);
@@ -198,15 +206,36 @@ int main(int argc, char const *argv[])
                 {
                     play = !play;
                 }
+
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    view.move(0, 1);
+                    window.setView(view);
+                }
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    view.move(0, -1);
+                    window.setView(view);
+                }
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    view.move(-1, 0);
+                    window.setView(view);
+                }
+                if (event.key.code == sf::Keyboard::Right)
+                {
+                    view.move(1, 0);
+                    window.setView(view);
+                }
             }
             if (event.type == sf::Event::MouseWheelMoved)
             {
-                if (event.mouseWheel.delta > 0)
+                if (event.mouseWheel.delta < 0)
                 {
                     view.zoom(1.1f);
                     window.setView(view);
                 }
-                if (event.mouseWheel.delta < 0)
+                if (event.mouseWheel.delta > 0)
                 {
                     view.zoom(0.9f);
                     window.setView(view);
@@ -236,8 +265,12 @@ int main(int argc, char const *argv[])
                 {
                     if (event.mouseButton.button == sf::Mouse::Left)
                     {
-                        int x = event.mouseButton.x / RESOLUTION;
-                        int y = event.mouseButton.y / RESOLUTION;
+                        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+                        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+                        // int x = event.mouseButton.x / RESOLUTION;
+                        // int y = event.mouseButton.y / RESOLUTION;
+                        int x = worldPos.x / RESOLUTION;
+                        int y = worldPos.y / RESOLUTION;
                         grid.switchState(x, y); // Toggle cell state
                         window.clear();
                         grid.drawArray(window);
@@ -251,16 +284,37 @@ int main(int argc, char const *argv[])
                     {
                         play = !play;
                     }
+
+                    if (event.key.code == sf::Keyboard::Down)
+                    {
+                        view.move(0, 1);
+                        window.setView(view);
+                    }
+                    if (event.key.code == sf::Keyboard::Up)
+                    {
+                        view.move(0, -1);
+                        window.setView(view);
+                    }
+                    if (event.key.code == sf::Keyboard::Left)
+                    {
+                        view.move(-1, 0);
+                        window.setView(view);
+                    }
+                    if (event.key.code == sf::Keyboard::Right)
+                    {
+                        view.move(1, 0);
+                        window.setView(view);
+                    }
                 }
 
                 if (event.type == sf::Event::MouseWheelMoved)
                 {
-                    if (event.mouseWheel.delta > 0)
+                    if (event.mouseWheel.delta < 0)
                     {
                         view.zoom(1.1f);
                         window.setView(view);
                     }
-                    if (event.mouseWheel.delta < 0)
+                    if (event.mouseWheel.delta > 0)
                     {
                         view.zoom(0.9f);
                         window.setView(view);
@@ -280,8 +334,6 @@ int main(int argc, char const *argv[])
             grid.drawArray(window);
             grid.update2DArray();
             window.display();
-            sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-            sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
         }
     }
 
