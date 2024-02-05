@@ -47,16 +47,12 @@
 #define RLENGINE_HPP
 
 #include <torch/torch.h>
-#include <torch/script.h>
+#include "environment.hpp"
+#include "model.hpp"
 
-#include <iostream>
 
-class tenstor{
-public:
-    void print(){
-        torch::Tensor tensor = torch::rand({2, 3});
-        std::cout << tensor << std::endl;
-    }
+class RLEngine{
+
 };
 
 #endif
