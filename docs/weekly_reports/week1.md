@@ -24,7 +24,7 @@ The game introduces three modes of play:
 
 Included are screenshots demonstrating examples of cellular automata patterns. These visuals are instrumental in illustrating the potential complexity and aesthetic appeal of "Automata":
 
-- ![Screenshot 1](week1_images/Screenshot_2024-03-07_at_7.15.55_PM.png)
-- ![Screenshot 2](week1_images/Screenshot_2024-03-07_at_7.17.07_PM.png)
+- ![Screenshot 1](week1_images/img1.png)
+- ![Screenshot 2](week1_images/img2.png)
 
 For a dynamic representation of cellular automata, we recommend viewing the video ["Life in Life"](https://www.youtube.com/watch?v=xP5-iIeKXE8), which showcases the evolution of patterns over time.
