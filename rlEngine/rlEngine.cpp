@@ -42,6 +42,28 @@
  * THE SOFTWARE.
  */
 
-#include "rlEngine.hpp"
+#include "model.hpp"
+#include "environment.hpp"
+
+#include <torch/torch.h>
+#include <deque>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <iostream>
+#include <cmath>
 
 
+
+int main() {
+    //set all constant parameters
+    //create network
+    //sets optimizer to adam
+    //creates enviroment
+    //loop over episodes
+        //create state from env.reset()
+        //set reward to 0
+        //set done to false
+        //loop until done is true
+            //get qVal from the model(state);
+}
