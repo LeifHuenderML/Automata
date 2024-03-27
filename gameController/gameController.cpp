@@ -1,6 +1,6 @@
 /**
  * @file gameController.cpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief 
  * @version 0.1
  * @date 2024-01-24
@@ -41,7 +41,7 @@
  * THE SOFTWARE.
  */
 
-#include "GameController.hpp"
+#include "gameController.hpp"
 
 void GameController::playMusic(){
     //load a soundtrack and error check

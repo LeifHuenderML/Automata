@@ -1,6 +1,6 @@
 /**
  * @file uiManager.cpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief UIManager Responsibilities
  * Manages all user interface elements, including buttons, menus, and 
  * status displays. This involves rendering text, handling layout, and 

@@ -1,6 +1,6 @@
 /**
  * @file gameController.hpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief 
  * @version 0.1
  * @date 2024-01-24
