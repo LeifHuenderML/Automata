@@ -1,6 +1,6 @@
 /**
  * @file enviroment.cpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief 
  * Environment Responsibilities
  * Represents the environment in which cells exist. This can include factors 

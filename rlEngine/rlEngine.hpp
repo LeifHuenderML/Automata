@@ -1,6 +1,6 @@
 /**
  * @file rlEngine.hpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief RLEngine Responsibilities
  * Manages the reinforcement learning aspect using the C++ PyTorch API, 
  * a powerful library for machine learning and neural network computation.

@@ -1,6 +1,6 @@
 /**
  * @file envionrment.cpp
- * @author Leif Huender
+ * @author Leif Huender, Aaron, Shaun Swant
  * @brief 
  * @version 0.1
  * @date 2024-02-03

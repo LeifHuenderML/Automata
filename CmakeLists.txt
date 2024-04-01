@@ -1,6 +1,6 @@
 # /**
 #  * @file CmakeLists.txt
-#  * @author Leif Huender
+#  * @author Leif Huender, Aaron, Shaun Swant
 #  * @brief to build run: cmake -B build/  then cmake --build build/
 # cd build then run the executable ./Automata to run the program
 #  * @version 0.1
