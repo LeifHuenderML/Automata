@@ -15,8 +15,8 @@
  * @brief Construct a new Button:: Button object
  * 
  */
-Button::Button(){
-
+Button::Button()
+{
     //Button operations
     if (!mTexture.loadFromFile("button.png"))
     {
@@ -26,7 +26,6 @@ Button::Button(){
     mButton.setTexture(mTexture);
     sf::Vector2u imageSize=mTexture.getSize();
     mButton.setOrigin(imageSize.x/2, imageSize.y/2);
-    mButton.setColor(sf::Color::White);
     mPosition={300,200};
     mButton.setPosition(mPosition.x, mPosition.y);
     mBtnState = 0;
@@ -44,9 +43,6 @@ Button::Button(){
     mText.setCharacterSize(fontSize);
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
     mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
-
-    mTextNormal = sf::Color::Green;
-    mTextHover = sf::Color::Red;
     
 }
 
@@ -58,8 +54,8 @@ Button::Button(){
  * @param size 
  * @param color 
  */
-Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color){
-
+Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color)
+{
     //Button operations
     if (!mTexture.loadFromFile("button.png"))
     {
@@ -88,9 +84,6 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
     mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
 
-    mTextNormal = sf::Color::Green;
-    mTextHover = sf::Color::Red;
-
 }
 
 /**
@@ -98,8 +91,8 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
  * 
  * @param position 
  */
-void Button::setPosition(sf::Vector2f position){
-
+void Button::setPosition(sf::Vector2f position)
+{
     mPosition.x = position.x;
     mPosition.y = position.y;
     mButton.setPosition(mPosition);
@@ -114,8 +107,8 @@ void Button::setPosition(sf::Vector2f position){
  * 
  * @param size 
  */
-void Button::setSize(sf::Vector2f  size){
-
+void Button::setSize(sf::Vector2f  size)
+{
     sf::Vector2u imageSize=mTexture.getSize();
     mButton.setScale(size.x/imageSize.x, size.y/imageSize.y);
     unsigned int fontSize = mButton.getGlobalBounds().height/2;
@@ -124,15 +117,9 @@ void Button::setSize(sf::Vector2f  size){
     mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
 }
 
-//change button color to color (what else needs to be changed?)
-void Button::setColor(sf::Color btnColor){
-
-    mButton.setColor(btnColor);
-}
-
 //change button label to s (what else needs to be changed?)
-void Button::setText(std::string s){
-
+void Button::setText(std::string s)
+{
     mText.setString(s);
     unsigned int fontSize = mButton.getGlobalBounds().height/2;
     mText.setCharacterSize(fontSize);
@@ -141,8 +128,8 @@ void Button::setText(std::string s){
 }
 
 //This function update the button state and/or look
-void Button::update(sf::Event& e, sf::RenderWindow& window){
-
+void Button::update(sf::Event& e, sf::RenderWindow& window)
+{
     if (e.type == sf::Event::Closed)
         window.close();
 
@@ -196,8 +183,8 @@ void Button::update(sf::Event& e, sf::RenderWindow& window){
     }
 }
 
-void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const{
-    
+void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
+{
     target.draw(mButton, states);
     target.draw(mText, states);
 }

@@ -11,35 +11,54 @@
 
 #include "Menu.hpp"
 
-Menu::Menu(){
-    
+Menu::Menu()
+{
+    if (!mBackground.loadFromFile("ArchitectureHeader.png"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(1);
+    }
+    if (!mFont.loadFromFile("college.ttf"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(2);
+    }
+
+    mTitle.setFont(mFont);
+    mTitle.setString("AUTOMATA - a game of life");
+    mTitle.setCharacterSize(32);
+    mTitle.setOrigin(mTitle.getGlobalBounds().width/2, mTitle.getGlobalBounds().height/2);
+    mTitle.setFillColor(mTitleColor);
+
     m_0Player.setText("0 player");
     m_0Player.setSize({200,71});
     m_0Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-500)});
-    m_0Player.setColor(sf::Color::Red);
 
     m_1Player.setText("1 player");
-    m_1Player.setColor( sf::Color::Red);
     m_1Player.setSize({200,71});
     m_1Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-400)});
 
     mAI_Player.setText("AI player");
-    mAI_Player.setColor(sf::Color::Red);
     mAI_Player.setSize({200,71});
     mAI_Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-300)});
 
     minfo.setText("About");
-    minfo.setColor(sf::Color::Red);
     minfo.setSize({200,71});
     minfo.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-200)});
 }
 
-void Menu::run(){
+void Menu::run()
+{
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Menu");
 
+    sf::Sprite background(mBackground);
+    mTitlePosition.x = windowWidth/2;
+    mTitlePosition.y = windowHeight/4;
+    mTitle.setPosition(mTitlePosition);
 
-       while (window.isOpen())
-   {
+
+    while (window.isOpen())
+    {
        sf::Event event;
        playMusic();
        while (window.pollEvent(event))
@@ -53,12 +72,14 @@ void Menu::run(){
        }
 
        window.clear();
+       window.draw(background);
+       window.draw(mTitle);
        window.draw(m_0Player);
        window.draw(m_1Player);
        window.draw(mAI_Player);
        window.draw(minfo);
        window.display();
-   }
+    }
    
 }
 
