@@ -12,6 +12,10 @@ Please refer to our [installation guide](docs/architecture/installation/installa
 
 Please refer to our [style guide](docs/styleGuide/styleGuide.md) before making any changes to the repository.
 
+## Cellular Automata Presentation
+
+[link to google slides](https://docs.google.com/presentation/d/1gAvvsp_uM_VBZ2ScgulC3V3IFDqkjAptiTa2F3YEMwA/edit?usp=sharing)
+
 ## Rule Sets
 
 The game features a variety of rule sets, allowing players to explore different aspects of cellular automaton theory:
