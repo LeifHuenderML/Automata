@@ -46,7 +46,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add your executable
-add_executable(Automata main.cpp)
+add_executable(Automata rlEngine/main.cpp)
 
 # Link libraries
 target_link_libraries(Automata "${TORCH_LIBRARIES}" sfml-graphics sfml-window sfml-system sfml-audio)
+set_property(TARGET Automata PROPERTY CXX_STANDARD 17)
