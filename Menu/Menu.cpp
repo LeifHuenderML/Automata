@@ -13,7 +13,7 @@
 
 Menu::Menu()
 {
-    if (!mBackground.loadFromFile("ArchitectureHeader.png"))
+    if (!mBackground.loadFromFile("../docs/images/ArchitectureHeader.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
