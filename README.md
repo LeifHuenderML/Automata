@@ -6,11 +6,15 @@ Automata is an innovative game inspired by John Conway's Game of Life, utilizing
 
 ## Installation
 
-Please refer to our [installation guide](docs/architecture/installation/installation.md) here for setting up and running Automata.
+Please refer to our [installation guide](docs/installation/installation.md) here for setting up and running Automata.
 
 ## For Collaborators
 
 Please refer to our [style guide](docs/styleGuide/styleGuide.md) before making any changes to the repository.
+
+## Cellular Automata Presentation
+
+[link to google slides](https://docs.google.com/presentation/d/1gAvvsp_uM_VBZ2ScgulC3V3IFDqkjAptiTa2F3YEMwA/edit?usp=sharing)
 
 ## Rule Sets
 
