@@ -29,7 +29,7 @@ cd Automata
 Before running the build script, you need to make sure it has executable permissions:
 
 ```bash
-chmod +x build.sh
+chmod +x build.sh 
 ```
 
 ## Step 4: Build the Game
