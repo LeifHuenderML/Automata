@@ -21,13 +21,13 @@
 class Menu{
 private:
     //private data members 
-    const int windowHeight = 1600;
-    const int windowWidth = 1800;
+    const int windowHeight = 1080;
+    const int windowWidth = 1920;
     sf::Texture mBackground;
     sf::Text mTitle;
     sf::Font mFont;
     sf::Vector2f mTitlePosition;
-    sf::Color mTitleColor = sf::Color(0x2E344000);
+    sf::Color mTitleColor = sf::Color::Black;//(0x2E344000)
     Button m_0Player;
     Button m_1Player;
     Button mAI_Player;
