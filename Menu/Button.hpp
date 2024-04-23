@@ -13,7 +13,7 @@
 #define BUTTON_HPP
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include <unistd.h>
 
 enum state {normal, hovered, clicked};
 
@@ -50,17 +50,15 @@ private:
     //Button
     sf::Sprite mButton;
     sf::Texture mTexture;
-    sf::Color mButtonColor = sf::Color(0xBF616A00);
+    sf::Color mButtonColor = sf::Color(76,86,106,255);
     sf::Vector2f mPosition;
     sf::Uint32 mBtnState;
     
     //text
     sf::Text mText;
     sf::Font mFont;
-    sf::Color mTextNormal = sf::Color(0x2E344000);
-    sf::Color mTextHover  = sf::Color(0x4C566A00);
-
-
+    sf::Color mTextNormal = sf::Color(229,233,240,255);
+    sf::Color mTextHover  = sf::Color(129,161,193,255);
 };
 
 #endif

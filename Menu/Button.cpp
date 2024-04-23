@@ -10,15 +10,23 @@
  */
 
 #include "Button.hpp"
+
  
 /**
  * @brief Construct a new Button:: Button object
  * 
  */
 Button::Button()
-{
+{   
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+        std::cout << "Current working dir: " << cwd << std::endl;
+    } else {
+        perror("getcwd() error");
+    }
+    // mTexture.loadFromFile("Menu/button.png");
     //Button operations
-    if (!mTexture.loadFromFile("button.png"))
+    if (!mTexture.loadFromFile("Menu/button.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -31,8 +39,9 @@ Button::Button()
     mBtnState = 0;
     mButton.setScale(.5,.5);
 
+    // mFont.loadFromFile("Menu/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("college.ttf"))
+    if (!mFont.loadFromFile("Menu/college.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);
@@ -56,8 +65,9 @@ Button::Button()
  */
 Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color)
 {
+    // mTexture.loadFromFile("Menu/Menu/button.png");
     //Button operations
-    if (!mTexture.loadFromFile("button.png"))
+    if (!mTexture.loadFromFile("Menu/button.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -71,8 +81,9 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
     mBtnState = 0;
     mButton.setScale(size.x/imageSize.x, size.y/imageSize.y);
 
+    // mFont.loadFromFile("Menu/Menu/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("college.ttf"))
+    if (!mFont.loadFromFile("Menu/college.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);
