@@ -33,8 +33,6 @@ public:
     void setPosition(sf::Vector2f position);
     //change button size to size (what else needs to be changed?)
     void setSize(sf::Vector2f  size);
-    //change button color to color (what else needs to be changed?)
-    void setColor(sf::Color btnColor);
     //change button label to s (what else needs to be changed?)
     void setText(std::string s);
     void setColorTextNormal(sf::Color textNormalColor){mTextNormal = textNormalColor;};
@@ -52,15 +50,16 @@ private:
     //Button
     sf::Sprite mButton;
     sf::Texture mTexture;
-    sf::Color mButtonColor;
+    sf::Color mButtonColor = sf::Color(0xBF616A00);
     sf::Vector2f mPosition;
     sf::Uint32 mBtnState;
     
     //text
     sf::Text mText;
     sf::Font mFont;
-    sf::Color mTextNormal;
-    sf::Color mTextHover;
+    sf::Color mTextNormal = sf::Color(0x2E344000);
+    sf::Color mTextHover  = sf::Color(0x4C566A00);
+
 
 };
 
