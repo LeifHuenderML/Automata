@@ -21,8 +21,8 @@
 class Menu{
 private:
     //private data members 
-    const int windowHeight = 1080;
-    const int windowWidth = 1920;
+    const int windowWidth = 1512;
+    const int windowHeight = 982; 
     sf::Texture mBackground;
     sf::Text mTitle;
     sf::Font mFont;

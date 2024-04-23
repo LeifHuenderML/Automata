@@ -10,23 +10,34 @@
  */
 
 #include "Menu.hpp"
+#include <unistd.h>
 
 Menu::Menu()
-{
-    if (!mBackground.loadFromFile("../docs/images/ArchitectureHeader.png"))
+{   
+    
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+        std::cout << "Current working dir: " << cwd << std::endl;
+    } else {
+        perror("getcwd() error");
+    }
+
+    if (!mBackground.loadFromFile("docs/images/ArchitectureHeader.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
     }
-    if (!mFont.loadFromFile("college.ttf"))
-    {
-        std::cout<<"Error opening file\n";
-        exit(2);
-    }
+    mFont.loadFromFile("Menu/college.ttf");
+    // //Font operations
+    // if (!mFont.loadFromFile("college.ttf"))
+    // {
+    //     std::cout<<"Error opening file\n";
+    //     exit(2);
+    // }
 
     mTitle.setFont(mFont);
     mTitle.setString("AUTOMATA - a game of life");
-    mTitle.setCharacterSize(32);
+    mTitle.setCharacterSize(110);
     mTitle.setOrigin(mTitle.getGlobalBounds().width/2, mTitle.getGlobalBounds().height/2);
     mTitle.setFillColor(mTitleColor);
 
@@ -60,7 +71,7 @@ void Menu::run()
     while (window.isOpen())
     {
        sf::Event event;
-       playMusic();
+    //    playMusic();
        while (window.pollEvent(event))
        {
            if (event.type == sf::Event::Closed)
@@ -92,3 +103,8 @@ void Menu::playMusic(){
     //play the music
     music.play();
 }
+
+
+//cs textbooks
+// modern programming languages 2nd edition by adam boroks webber
+// understanding unix/linux programming by bruce molay 
