@@ -1,13 +1,3 @@
-/**
- * @file game.cpp
- * @author Leif Huender, Aaron, Shaun Swant
- * @brief 
- * @version 0.1
- * @date 2024-03-27
- * 
- * @copyright Copyright (c) 2024
- * 
- */
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -19,94 +9,152 @@
 #include <algorithm>
 #include <vector>
 
-const int RESOLUTION = 4;
-
-struct Grid
+class Cell
 {
-    const static int GRID_WIDTH = 2048;
-    const static int GRID_HEIGHT = 2048;
-    const static int COLS = GRID_WIDTH / RESOLUTION;
-    const static int ROWS = GRID_HEIGHT / RESOLUTION;
+public:
+    Cell(float x = 0.f, float y = 0.f, bool alive = 0)
 
-    int **m_Arr;
-    int **m_NewArr;
-    std::vector<int> m_Neighbors;
-
-    Grid()
     {
-        m_Arr = new int *[COLS];
-        m_NewArr = new int *[COLS];
-        for (size_t i = 0; i < COLS + 2; ++i)
+        m_Location.x = x;
+        m_Location.y = y;
+        m_IsAlive = alive;
+        m_AliveColor = sf::Color(143, 188, 187, 255);
+        m_DeadColor = sf::Color(46, 52, 64, 255);
+    }
+
+    sf::Vector2f getLocation()
+
+    {
+        return m_Location;
+    }
+
+    void setLocation(float x, float y)
+
+    {
+        m_Location.x = x;
+        m_Location.y = y;
+    }
+
+    bool getIsAlive()
+
+    {
+        return m_IsAlive;
+    }
+
+    void setState(bool state)
+
+    {
+        m_IsAlive = state;
+    }
+
+    sf::Color getAliveColor()
+    {
+        return m_AliveColor;
+    }
+
+    sf::Color getDeadColor()
+    {
+        return m_DeadColor;
+    }
+
+protected:
+    sf::Vector2f m_Location;
+    sf::Color m_AliveColor;
+    sf::Color m_DeadColor;
+    bool m_IsAlive;
+};
+
+class ConwayCell : public Cell
+{
+public:
+    ConwayCell()
+    {
+        m_AliveColor = sf::Color(143, 188, 187, 255);
+        m_DeadColor = sf::Color::White;
+    }
+
+private:
+};
+
+class HighCell : public Cell
+{
+    HighCell()
+    {
+        m_AliveColor = sf::Color::Black;
+        m_DeadColor = sf::Color::White;
+    }
+};
+
+class RainbowCell : public Cell
+{
+public:
+private:
+};
+
+class Grid
+{
+public:
+    Grid()
+
+    {
+        m_Cells = new Cell *[COLS + 2];
+        m_NextCells = new Cell *[COLS + 2];
+
+        for (size_t i = 0; i < COLS + 2; i++)
+
         {
-            m_Arr[i] = new int[ROWS];
-            m_NewArr[i] = new int[ROWS];
-            for (size_t j = 0; j < ROWS + 2; ++j)
+            m_Cells[i] = new Cell[ROWS + 2];
+            m_NextCells[i] = new Cell[ROWS + 2];
+
+            for (size_t j = 0; j < ROWS + 2; j++)
+
             {
-                m_NewArr[i][j] = 0;
-                m_Arr[i][j] = rand() % 2;
+                bool state = std::rand() % 2;
+                m_Cells[i][j].setLocation(i, j);
+                m_Cells[i][j].setState(state);
+                m_NextCells[i][j].setLocation(i, j);
             }
         }
     }
 
     ~Grid()
+
     {
         for (size_t i = 0; i < COLS; ++i)
+
         {
-            delete[] m_Arr[i];
-            delete[] m_NewArr[i];
+            delete[] m_Cells[i];
+            delete[] m_NextCells[i];
         }
-        delete[] m_Arr;
-        delete[] m_NewArr;
+        delete[] m_Cells;
+        delete[] m_NextCells;
     }
 
-    void update2DArray()
+    int findAliveNeighbors(Cell *cell)
     {
-        for (size_t i = 1; i < COLS + 1; ++i)
-        {
-            for (size_t j = 1; j < ROWS + 1; ++j)
-            {
-                int aliveNeighbors = findNeighbors(i, j);
-                if (m_Arr[i][j] && (aliveNeighbors < 2 || aliveNeighbors > 3))
-                {
-                    m_NewArr[i][j] = 0;
-                    continue;
-                }
-                if (!m_Arr[i][j] && aliveNeighbors == 3)
-                {
-                    m_NewArr[i][j] = 1;
-                    continue;
-                }
-                m_NewArr[i][j] = m_Arr[i][j];
-            }
-        }
-        for (size_t i = 0; i < COLS + 2; ++i)
-        {
-            for (size_t j = 0; j < ROWS + 2; ++j)
-            {
-                m_Arr[i][j] = m_NewArr[i][j];
-            }
-        }
-    }
+        sf::Vector2f location = cell->getLocation();
+        int x = location.x;
+        int y = location.y;
 
-    int findNeighbors(int x, int y)
-    {
-        m_Neighbors = {
-            m_Arr[x - 1][y - 1],
-            m_Arr[x - 1][y],
-            m_Arr[x - 1][y + 1],
+        Cell neighbors[] = {
+            m_Cells[x - 1][y - 1],
+            m_Cells[x - 1][y],
+            m_Cells[x - 1][y + 1],
 
-            m_Arr[x][y - 1],
-            m_Arr[x][y + 1],
+            m_Cells[x][y - 1],
+            m_Cells[x][y + 1],
 
-            m_Arr[x + 1][y - 1],
-            m_Arr[x + 1][y],
-            m_Arr[x + 1][y + 1]};
+            m_Cells[x + 1][y - 1],
+            m_Cells[x + 1][y],
+            m_Cells[x + 1][y + 1]};
 
         int aliveNeighbors = 0;
 
-        for (int neighbor : m_Neighbors)
+        for (int i = 0; i < 8; i++)
+
         {
-            if (neighbor)
+            if (neighbors[i].getIsAlive())
+
             {
                 aliveNeighbors++;
             }
@@ -114,237 +162,142 @@ struct Grid
         return aliveNeighbors;
     }
 
-    void printArray()
+    void createImage()
+
     {
-        for (size_t i = 0; i < COLS + 2; ++i)
+        m_Image.create(GRID_WIDTH, GRID_HEIGHT);
+        for (size_t i = 1; i < COLS + 1; ++i)
+
         {
-            for (size_t j = 0; j < ROWS + 2; ++j)
+            for (size_t j = 1; j < ROWS + 1; ++j)
+
             {
-                std::cout << m_Arr[i][j] << " ";
+                if (m_Cells[i][j].getIsAlive())
+
+                {
+                    m_Image.setPixel(i - 1, j - 1, m_Cells[i][j].getAliveColor());
+                }
+                else
+                {
+                    m_Image.setPixel(i - 1, j - 1, m_Cells[i][j].getDeadColor());
+                }
             }
-            std::cout << std::endl;
         }
+
+        if (!m_Image.saveToFile("result.png"))
+            exit(1);
     }
 
-    void drawArray(sf::RenderWindow &window)
-    {
-        sf::Color color0(0, 0, 0);
-        sf::Color color1(255, 255, 255);
-        sf::Color color2(255, 128, 0);
-        sf::Color color3(153, 255, 255);
-        for (size_t i = 0; i < COLS + 1; ++i)
-        {
-            for (size_t j = 0; j < ROWS + 1; ++j)
-            {
-                sf::RectangleShape shape;
+    void updateGrid()
 
-                shape.setSize(sf::Vector2f(GRID_WIDTH / COLS, GRID_HEIGHT / ROWS));
-                shape.setPosition((GRID_WIDTH / COLS) * i, (GRID_HEIGHT / ROWS) * j);
-                if (m_Arr[i][j])
+    {
+        for (size_t i = 1; i < COLS + 1; i++)
+
+        {
+            for (size_t j = 1; j < ROWS + 1; j++)
+
+            {
+                int aliveNeighbors = findAliveNeighbors(&m_Cells[i][j]);
+                if (m_Cells[i][j].getIsAlive() && (aliveNeighbors < 2 || aliveNeighbors > 3))
+
                 {
-                    shape.setFillColor(color0);
-                    window.draw(shape);
+                    m_NextCells[i][j].setState(0);
                     continue;
                 }
-                shape.setFillColor(color1);
-                window.draw(shape);
+                if (!m_Cells[i][j].getIsAlive() && aliveNeighbors == 3)
+
+                {
+                    m_NextCells[i][j].setState(1);
+                    continue;
+                }
+                m_NextCells[i][j] = m_Cells[i][j];
+            }
+        }
+
+        createImage();
+
+        for (size_t i = 0; i < COLS; ++i)
+
+        {
+            for (size_t j = 0; j < ROWS; ++j)
+
+            {
+                m_Cells[i][j] = m_NextCells[i][j];
             }
         }
     }
 
-    bool getState(int x, int y)
+    void draw(sf::RenderWindow &window)
+
     {
-        bool state = m_Arr[x][y];
+
+        m_Texture.create(GRID_WIDTH, GRID_HEIGHT);
+
+        m_Texture.update(m_Image);
+        m_Sprite.setPosition(0.f, 0.f);
+        m_Sprite.setTexture(m_Texture);
+        window.draw(m_Sprite);
+    }
+
+    std::vector<std::vector<bool>> getState()
+    {
+        std::vector<std::vector<bool>> state(ROWS, std::vector<bool>(COLS, false));
+        for (size_t i = 1; i < COLS + 1; i++)
+        {
+            for (size_t j = 1; j < ROWS + 1; j++)
+            {
+                state[i][j] = m_Cells[i][j].getIsAlive();
+            }
+        }
 
         return state;
     }
 
-    void switchState(int x, int y)
+    void setState(std::vector<bool> locationValues)
     {
-        m_Arr[x][y] = !getState(x, y);
+        for (int i = 0; i < locationValues.size() - 1; i += 2)
+        {
+            m_Cells[i][i + 1].setState(1);
+        }
     }
+
+private:
+    const static int GRID_WIDTH = 1024;
+    const static int GRID_HEIGHT = 1024;
+    const static int COLS = GRID_WIDTH;
+    const static int ROWS = GRID_HEIGHT;
+
+    Cell **m_Cells;
+    Cell **m_NextCells;
+
+    sf::Image m_Image;
+    sf::Texture m_Texture;
+    sf::Sprite m_Sprite;
 };
 
-int main(int argc, char const *argv[])
+int main()
 {
-    const int WINDOW_WIDTH = 1024;
-    const int WINDOW_HEIGHT = 1024;
-
     srand(time(0));
-
     Grid grid;
-    grid.printArray();
-
-    bool play = false;
-
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Automota");
-    sf::View view(sf::Vector2f(350.f, 300.f), sf::Vector2f(300.f, 200.f));
-    window.setView(view);
+    sf::RenderWindow window(sf::VideoMode(1024, 1024), "Automota");
 
     while (window.isOpen())
+
     {
+        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
-        {
 
+        {
+            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
-            {
                 window.close();
-                exit(0);
-            }
-
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-                if (event.mouseButton.button == sf::Mouse::Left)
-                {
-                    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-                    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
-                    // int x = event.mouseButton.x / RESOLUTION;
-                    // int y = event.mouseButton.y / RESOLUTION;
-                    int x = worldPos.x / RESOLUTION;
-                    int y = worldPos.y / RESOLUTION;
-                    grid.switchState(x, y); // Toggle cell state
-                    window.clear();
-                    grid.drawArray(window);
-                    window.display();
-                }
-            }
-
-            if (event.type == sf::Event::KeyPressed)
-            {
-                if (event.key.code == sf::Keyboard::Enter)
-                {
-                    play = !play;
-                }
-
-                if (event.key.code == sf::Keyboard::Down)
-                {
-                    view.move(0, 1);
-                    window.setView(view);
-                }
-                if (event.key.code == sf::Keyboard::Up)
-                {
-                    view.move(0, -1);
-                    window.setView(view);
-                }
-                if (event.key.code == sf::Keyboard::Left)
-                {
-                    view.move(-1, 0);
-                    window.setView(view);
-                }
-                if (event.key.code == sf::Keyboard::Right)
-                {
-                    view.move(1, 0);
-                    window.setView(view);
-                }
-            }
-            if (event.type == sf::Event::MouseWheelMoved)
-            {
-                if (event.mouseWheel.delta < 0)
-                {
-                    view.zoom(1.1f);
-                    window.setView(view);
-                }
-                if (event.mouseWheel.delta > 0)
-                {
-                    view.zoom(0.9f);
-                    window.setView(view);
-                }
-            }
-
-            if (event.type == sf::Event::Resized)
-            {
-                // update the view to the new size of the window
-                sf::FloatRect visibleArea(0.f, 0.f, event.size.width, event.size.height);
-                window.setView(sf::View(visibleArea));
-            }
         }
+        grid.createImage();
+        grid.updateGrid();
+        grid.draw(window);
 
-        while (play)
-        {
-            while (window.pollEvent(event))
-            {
-
-                if (event.type == sf::Event::Closed)
-                {
-                    window.close();
-                    exit(0);
-                }
-
-                if (event.type == sf::Event::MouseButtonPressed)
-                {
-                    if (event.mouseButton.button == sf::Mouse::Left)
-                    {
-                        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-                        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
-                        // int x = event.mouseButton.x / RESOLUTION;
-                        // int y = event.mouseButton.y / RESOLUTION;
-                        int x = worldPos.x / RESOLUTION;
-                        int y = worldPos.y / RESOLUTION;
-                        grid.switchState(x, y); // Toggle cell state
-                        window.clear();
-                        grid.drawArray(window);
-                        window.display();
-                    }
-                }
-
-                if (event.type == sf::Event::KeyPressed)
-                {
-                    if (event.key.code == sf::Keyboard::Enter)
-                    {
-                        play = !play;
-                    }
-
-                    if (event.key.code == sf::Keyboard::Down)
-                    {
-                        view.move(0, 1);
-                        window.setView(view);
-                    }
-                    if (event.key.code == sf::Keyboard::Up)
-                    {
-                        view.move(0, -1);
-                        window.setView(view);
-                    }
-                    if (event.key.code == sf::Keyboard::Left)
-                    {
-                        view.move(-1, 0);
-                        window.setView(view);
-                    }
-                    if (event.key.code == sf::Keyboard::Right)
-                    {
-                        view.move(1, 0);
-                        window.setView(view);
-                    }
-                }
-
-                if (event.type == sf::Event::MouseWheelMoved)
-                {
-                    if (event.mouseWheel.delta < 0)
-                    {
-                        view.zoom(1.1f);
-                        window.setView(view);
-                    }
-                    if (event.mouseWheel.delta > 0)
-                    {
-                        view.zoom(0.9f);
-                        window.setView(view);
-                    }
-                }
-
-                if (event.type == sf::Event::Resized)
-                {
-                    // update the view to the new size of the window
-                    sf::FloatRect visibleArea(0.f, 0.f, event.size.width, event.size.height);
-                    window.setView(sf::View(visibleArea));
-                }
-            }
-
-            window.clear();
-            // sf::sleep(sf::milliseconds(85));
-            grid.drawArray(window);
-            grid.update2DArray();
-            window.display();
-        }
+        window.display();
     }
 
     return 0;
