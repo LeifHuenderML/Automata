@@ -67,7 +67,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
 {
     // mTexture.loadFromFile("Menu/Menu/button.png");
     //Button operations
-    if (!mTexture.loadFromFile("Menu/button.png"))
+    if (!mTexture.loadFromFile("docs/images/button.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -83,7 +83,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
     // mFont.loadFromFile("Menu/Menu/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("Menu/college.ttf"))
+    if (!mFont.loadFromFile("docs/images/college.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);
