@@ -43,7 +43,7 @@ Menu::Menu()
 
     m_0Player.setText("0 player");
     m_0Player.setSize({200,71});
-    m_0Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-500)});
+    m_0Player.setPosition({(static_cast<float>(windowWidth)/3), (static_cast<float>(windowHeight)-500)});
 
     m_1Player.setText("1 player");
     m_1Player.setSize({200,71});
@@ -53,9 +53,6 @@ Menu::Menu()
     mAI_Player.setSize({200,71});
     mAI_Player.setPosition({m_1Player.getPosition().x + m_1Player.getDimensions().x + 100, (static_cast<float>(windowHeight)-500)});
 
-    minfo.setText("About");
-    minfo.setSize({200,71});
-    minfo.setPosition({mAI_Player.getPosition().x + mAI_Player.getDimensions().x + 100, (static_cast<float>(windowHeight)-500)});
 }
 
 void Menu::run()
@@ -79,7 +76,6 @@ void Menu::run()
             m_0Player.update(event, window);
             m_1Player.update(event, window);
             mAI_Player.update(event, window);
-            minfo.update(event, window);
        }
 
        window.clear();
@@ -88,7 +84,6 @@ void Menu::run()
        window.draw(m_0Player);
        window.draw(m_1Player);
        window.draw(mAI_Player);
-       window.draw(minfo);
        window.display();
     }
    

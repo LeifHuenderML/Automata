@@ -31,7 +31,6 @@ private:
     Button m_0Player;
     Button m_1Player;
     Button mAI_Player;
-    Button minfo;
     //private function members
     //void playMusic();
 public:
