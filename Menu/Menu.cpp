@@ -22,12 +22,12 @@ Menu::Menu()
         perror("getcwd() error");
     }
 
-    if (!mBackground.loadFromFile("docs/images/ArchitectureHeader.png"))
+    if (!mBackground.loadFromFile("docs/images/Menu_Background.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
     }
-    mFont.loadFromFile("Menu/college.ttf");
+    mFont.loadFromFile("docs/images/college.ttf");
     // //Font operations
     // if (!mFont.loadFromFile("college.ttf"))
     // {
@@ -47,15 +47,15 @@ Menu::Menu()
 
     m_1Player.setText("1 player");
     m_1Player.setSize({200,71});
-    m_1Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-400)});
+    m_1Player.setPosition({m_0Player.getPosition().x + m_0Player.getDimensions().x + 100, (static_cast<float>(windowHeight)-500)});
 
     mAI_Player.setText("AI player");
     mAI_Player.setSize({200,71});
-    mAI_Player.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-300)});
+    mAI_Player.setPosition({m_1Player.getPosition().x + m_1Player.getDimensions().x + 100, (static_cast<float>(windowHeight)-500)});
 
     minfo.setText("About");
     minfo.setSize({200,71});
-    minfo.setPosition({(static_cast<float>(windowWidth)/2), (static_cast<float>(windowHeight)-200)});
+    minfo.setPosition({mAI_Player.getPosition().x + mAI_Player.getDimensions().x + 100, (static_cast<float>(windowHeight)-500)});
 }
 
 void Menu::run()
