@@ -275,30 +275,30 @@ private:
     sf::Sprite m_Sprite;
 };
 
-int main()
-{
-    srand(time(0));
-    Grid grid;
-    sf::RenderWindow window(sf::VideoMode(1024, 1024), "Automota");
+// int main()
+// {
+//     srand(time(0));
+//     Grid grid;
+//     sf::RenderWindow window(sf::VideoMode(1024, 1024), "Automota");
 
-    while (window.isOpen())
+//     while (window.isOpen())
 
-    {
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (window.pollEvent(event))
+//     {
+//         // check all the window's events that were triggered since the last iteration of the loop
+//         sf::Event event;
+//         while (window.pollEvent(event))
 
-        {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-        grid.createImage();
-        grid.updateGrid();
-        grid.draw(window);
+//         {
+//             // "close requested" event: we close the window
+//             if (event.type == sf::Event::Closed)
+//                 window.close();
+//         }
+//         grid.createImage();
+//         grid.updateGrid();
+//         grid.draw(window);
 
-        window.display();
-    }
+//         window.display();
+//     }
 
-    return 0;
-}
+//     return 0;
+// }

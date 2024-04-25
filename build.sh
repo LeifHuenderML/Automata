@@ -14,6 +14,7 @@ check_python_installed() {
 }
 
 if check_python_installed; then
+    sudo apt install pip -y
     #install conda
     MINICONDA_INSTALLER="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"
     wget "$MINICONDA_INSTALLER" -O Miniconda3-latest-Windows-x86_64.exe
@@ -30,6 +31,13 @@ if check_python_installed; then
     pip install -r requirements.txt
 
     echo "Installation complete."
+
+    echo "Building Binaries..."
+    cmake -B build/
+    cmake --b build/
+    echo "Binaries built successfully."
+    echo "Launching the application..."
+    ./build/Automata
 
 else
     exit 1

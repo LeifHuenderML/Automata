@@ -27,7 +27,7 @@ public:
     //and set position at the middle of the button, assign “Push me!” as a string of the button
     Button();
     //Constructor that sets button label to s, button position to the position,  button size to size (given in pixels), and button color to color.
-    Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color);
+    Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int num);
     ~Button(){};
     //change button position to position (what else needs to be changed?)
     void setPosition(sf::Vector2f position);
@@ -37,13 +37,14 @@ public:
     void setText(std::string s);
     void setColorTextNormal(sf::Color textNormalColor){mTextNormal = textNormalColor;};
     void setColorTextHover(sf::Color textHoverColor){mTextHover = textHoverColor;};
+    void setNum(int num);
 
     sf::Vector2f getPosition(){return mPosition;};
     sf::Vector2f getDimensions(){return sf::Vector2f(mButton.getGlobalBounds().width, mButton.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
 
     //This function update the button state and/or look
-    void update(sf::Event& e, sf::RenderWindow& window);
+    int update(sf::Event& e, sf::RenderWindow& window);
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 
 private:
@@ -53,6 +54,7 @@ private:
     sf::Color mButtonColor = sf::Color(76,86,106,255);
     sf::Vector2f mPosition;
     sf::Uint32 mBtnState;
+    int btnNum;
     
     //text
     sf::Text mText;

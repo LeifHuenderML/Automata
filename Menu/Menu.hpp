@@ -17,6 +17,12 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Button.hpp"
+#include <cstdlib>
+#include <iostream>
+#include <time.h>
+#include <algorithm>
+#include <vector>
+#include "../game.cpp"
 
 class Menu{
 private:
@@ -31,12 +37,20 @@ private:
     Button m_0Player;
     Button m_1Player;
     Button mAI_Player;
+    // void navigateToNewWindow(int state);
+    void mainPage();
+    void secondPage();
+    void game();
+    int m1, m2, m3;
+    int s1, s2, s3;
+
     //private function members
     //void playMusic();
 public:
     Menu();
     void run();
     void playMusic();
+
 };
 
 
