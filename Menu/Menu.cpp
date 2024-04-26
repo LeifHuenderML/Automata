@@ -60,7 +60,7 @@ Menu::Menu()
 
 void Menu::run() {
     mainPage();
-    secondPage();
+    // secondPage();
     game();
 }
 
@@ -71,9 +71,11 @@ void Menu::mainPage() {
     mTitlePosition.y = windowHeight / 4;
     mTitle.setPosition(mTitlePosition);
 
-    while (window.isOpen()) {
+    while (window.isOpen()) 
+    {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event)) 
+        {
             if (event.type == sf::Event::Closed)
                 window.close();
 
@@ -81,15 +83,56 @@ void Menu::mainPage() {
             m2 = m_1Player.update(event, window);
             m3 = mAI_Player.update(event, window);
 
-            if (m1 == 1 || m2 == 2 || m3 == 3) {
+            if (m1 == 1 || m2 == 2 || m3 == 3) 
+            {
                 std::cout << "Button pressed" << std::endl;
                 break;
             }
             
         }
-        if (m1 == 1 || m2 == 2 || m3 == 3) {
-                std::cout << "Button pressed" << std::endl;
-                break;
+
+        if (m1 == 1 || m2 == 2 || m3 == 3) 
+        {
+            std::cout << "Button pressed" << std::endl;
+
+            m_0Player.setText("Conway");
+            m_1Player.setText("Rainbow");
+            mAI_Player.setText("HighLife");
+
+            while (window.isOpen()) 
+            {
+                sf::Event event;
+                while (window.pollEvent(event)) 
+                {
+                    if (event.type == sf::Event::Closed)
+                        window.close();
+
+                    s1 = m_0Player.update(event, window);
+                    s2 = m_1Player.update(event, window);
+                    s3 = mAI_Player.update(event, window);
+
+                    if (s1 == 1 || s2 == 2 || s3 == 3) 
+                    {
+                        std::cout << "Button pressed" << std::endl;
+                        break;
+                    }
+
+                
+                }
+
+                window.clear();
+                window.draw(background);
+                window.draw(mTitle);
+                window.draw(m_0Player);
+                window.draw(m_1Player);
+                window.draw(mAI_Player);
+                window.display();
+            }
+            window.close();
+
+            std::cout << m1 << " " << m2 << " " << m3 << std::endl;
+            std::cout << s1 << " " << s2 << " " << s3 << std::endl;
+
         }
 
         window.clear();
@@ -103,51 +146,46 @@ void Menu::mainPage() {
     window.close();
 }
 
-void Menu::secondPage() {
-    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Menu");
-    sf::Sprite background(mBackground);
-    mTitlePosition.x = windowWidth / 2;
-    mTitlePosition.y = windowHeight / 4;
-    mTitle.setPosition(mTitlePosition);
+// void Menu::secondPage() {
 
-    m_0Player.setText("Conway");
-    m_1Player.setText("Rainbow");
-    mAI_Player.setText("HighLife");
+//     m_0Player.setText("Conway");
+//     m_1Player.setText("Rainbow");
+//     mAI_Player.setText("HighLife");
 
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+//     while (window.isOpen()) {
+//         sf::Event event;
+//         while (window.pollEvent(event)) {
+//             if (event.type == sf::Event::Closed)
+//                 window.close();
 
-            s1 = m_0Player.update(event, window);
-            s2 = m_1Player.update(event, window);
-            s3 = mAI_Player.update(event, window);
+//             s1 = m_0Player.update(event, window);
+//             s2 = m_1Player.update(event, window);
+//             s3 = mAI_Player.update(event, window);
 
-            if (s1 == 1 || s2 == 2 || s3 == 3) {
-                std::cout << "Button pressed" << std::endl;
-                break;
-            }
+//             if (s1 == 1 || s2 == 2 || s3 == 3) {
+//                 std::cout << "Button pressed" << std::endl;
+//                 break;
+//             }
 
             
-        }
+//         }
 
-        if (s1 == 1 || s2 == 2 || s3 == 3) {
-                break;
-        }
+//         if (s1 == 1 || s2 == 2 || s3 == 3) {
+//                 break;
+//         }
 
-        window.clear();
-        window.draw(background);
-        window.draw(mTitle);
-        window.draw(m_0Player);
-        window.draw(m_1Player);
-        window.draw(mAI_Player);
-        window.display();
-    }
-    window.close();
-    std::cout << m1 << " " << m2 << " " << m3 << std::endl;
-    std::cout << s1 << " " << s2 << " " << s3 << std::endl;
-}
+//         window.clear();
+//         window.draw(background);
+//         window.draw(mTitle);
+//         window.draw(m_0Player);
+//         window.draw(m_1Player);
+//         window.draw(mAI_Player);
+//         window.display();
+//     }
+//     window.close();
+//     std::cout << m1 << " " << m2 << " " << m3 << std::endl;
+//     std::cout << s1 << " " << s2 << " " << s3 << std::endl;
+// }
 
 
 // void Menu::run()
