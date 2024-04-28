@@ -1,10 +1,17 @@
-/**
- * @file game.cpp
- * @author Leif Huender, Aaron, Shaun Swant
- * @brief 
- * @version 0.1
- * @date 2024-03-27
- * 
- * @copyright Copyright (c) 2024
- * 
- */
+#include <string>
+
+#include <SFML/Window.hpp>
+
+#include "gameController/GameLoop.hpp"
+
+int main() {
+
+	std::string str = "Conway";
+	std::string str1 = "Rainbow";
+	std::string str2 = "High";
+	GameLoop game;
+
+	game.gameLoop(str2, 1);
+
+	return 0;
+}
