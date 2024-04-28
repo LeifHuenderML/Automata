@@ -24,9 +24,9 @@ Button::Button()
     } else {
         perror("getcwd() error");
     }
-    // mTexture.loadFromFile("Menu/button.png");
+    // mTexture.loadFromFile("docs/images/button.png");
     //Button operations
-    if (!mTexture.loadFromFile("Menu/button.png"))
+    if (!mTexture.loadFromFile("docs/images/button.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -39,9 +39,9 @@ Button::Button()
     mBtnState = 0;
     mButton.setScale(.5,.5);
 
-    // mFont.loadFromFile("Menu/college.ttf");
+    // mFont.loadFromFile("docs/ages/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("Menu/college.ttf"))
+    if (!mFont.loadFromFile("docs/images/college.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);
@@ -63,9 +63,10 @@ Button::Button()
  * @param size 
  * @param color 
  */
-Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color)
-{
-    // mTexture.loadFromFile("Menu/Menu/button.png");
+Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int num)
+{   
+    btnNum = num;
+    // mTexture.loadFromFile("Menu/docs/images/button.png");
     //Button operations
     if (!mTexture.loadFromFile("docs/images/button.png"))
     {
@@ -81,7 +82,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
     mBtnState = 0;
     mButton.setScale(size.x/imageSize.x, size.y/imageSize.y);
 
-    // mFont.loadFromFile("Menu/Menu/college.ttf");
+    // mFont.loadFromFile("Menu/docsages/college.ttf");
     //Font operations
     if (!mFont.loadFromFile("docs/images/college.ttf"))
     {
@@ -95,6 +96,11 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
     mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
 
+}
+
+void Button::setNum(int num)
+{
+    btnNum = num;
 }
 
 /**
@@ -139,7 +145,7 @@ void Button::setText(std::string s)
 }
 
 //This function update the button state and/or look
-void Button::update(sf::Event& e, sf::RenderWindow& window)
+int Button::update(sf::Event& e, sf::RenderWindow& window)
 {
     if (e.type == sf::Event::Closed)
         window.close();
@@ -162,7 +168,7 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
             mText.setFillColor(mTextNormal);
         }
     }
-    if (e.type == sf::Event::MouseButtonPressed)
+    if (e.type == sf::Event::MouseButtonPressed && mouseInButton)
     {
         if(e.mouseButton.button==sf::Mouse::Left)
         {
@@ -174,6 +180,7 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
             {
                 mButton.setRotation(0);
             }
+            return btnNum;
         }
     }
     if (e.type == sf::Event::MouseButtonReleased)
@@ -192,6 +199,7 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
             }
         }
     }
+    return 0;
 }
 
 void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
