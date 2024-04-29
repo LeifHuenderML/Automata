@@ -12,15 +12,16 @@
 #include <time.h>
 #include <vector>
 
-#include "Grid.hpp"
-#include "HighGrid.hpp"
-#include "RainbowGrid.hpp"
+#include "../CellManagement/Grid.hpp"
+#include "../CellManagement/HighGrid.hpp"
+#include "../CellManagement/RainbowGrid.hpp"
+#include "../rlEngine/interface.hpp"
 
 class GameLoop {
 public:
-	void eventHandler(sf::RenderWindow& window, Grid* grid, bool player);
-	void eventHandler(sf::RenderWindow& window, HighGrid* grid, bool player);
-	void eventHandler(sf::RenderWindow& window, RainbowGrid* grid, bool player);
-	void gameLoop(std::string gameMode, bool player);
+	void eventHandler(sf::RenderWindow& window, Grid* grid, int player);
+	void eventHandler(sf::RenderWindow& window, HighGrid* grid, int player);
+	void eventHandler(sf::RenderWindow& window, RainbowGrid* grid, int player);
+	void gameLoop(std::string gameMode, int player);
 };
 

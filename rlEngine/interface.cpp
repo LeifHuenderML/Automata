@@ -57,7 +57,7 @@ void Interface::printPredictions(std::vector<int> &predictions){
 }
 
 void Interface::pythonInterface(){
-    std::string command = "python3 interface.py " + stateFilename + " " + predictionFilename;
+    std::string command = "python3 rlEngine/interface.py " + stateFilename + " " + predictionFilename;
     system(command.c_str());
 }
 

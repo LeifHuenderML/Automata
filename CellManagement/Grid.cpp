@@ -147,19 +147,16 @@ void Grid::draw(sf::RenderWindow& window)
 
 std::vector<std::vector<bool>> Grid::getState()
 {
-	std::vector<std::vector<bool>> state(ROWS, std::vector<bool>(COLS, false));
-	for (size_t i = 1; i < COLS + 1; i++)
-	{
-		for (size_t j = 1; j < ROWS + 1; j++)
-		{
+	std::vector<std::vector<bool>> state(COLS + 2, std::vector<bool>(ROWS + 2)); // If you need a border
+	for (size_t i = 0; i <= COLS + 1; i++) {
+		for (size_t j = 0; j <= ROWS + 1; j++) {
 			state[i][j] = m_Cells[i][j].getIsAlive();
 		}
 	}
-
 	return state;
 }
 
-void Grid::setState(std::vector<bool> locationValues)
+void Grid::setState(std::vector<int> locationValues)
 {
 	for (int i = 0; i < locationValues.size() - 1; i += 2)
 	{

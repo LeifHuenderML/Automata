@@ -41,7 +41,7 @@ Button::Button()
 
     // mFont.loadFromFile("docs/ages/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("docs/images/college.ttf"))
+    if (!mFont.loadFromFile("docs/images/Roboto-Bold.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);
@@ -84,7 +84,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
     // mFont.loadFromFile("Menu/docsages/college.ttf");
     //Font operations
-    if (!mFont.loadFromFile("docs/images/college.ttf"))
+    if (!mFont.loadFromFile("docs/images/Roboto-Bold.ttf"))
     {
         std::cout<<"Error opening file\n";
         exit(2);

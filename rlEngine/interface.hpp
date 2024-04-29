@@ -60,7 +60,7 @@
 
 class Interface{
 public:
-    Interface(std::string stateFilename, std::string predictionFilename): stateFilename(stateFilename), predictionFilename(predictionFilename){};
+    Interface(std::string stateFilename = "state.csv", std::string predictionFilename = "predictions.csv"): stateFilename(stateFilename), predictionFilename(predictionFilename){};
     std::vector<int> predict(std::vector<std::vector<bool>> &state);
     void printPredictions(std::vector<int> &predictions);
     void test();

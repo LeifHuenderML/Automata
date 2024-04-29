@@ -6,7 +6,7 @@ import torch
 
 print('Loading model...')
 model = DQN()
-model.load_state_dict(torch.load('model.pth'))
+model.load_state_dict(torch.load('rlEngine/model.pth'))
 print('Model loaded successfully')
 print('Loading data...')
 input_filename = sys.argv[1]

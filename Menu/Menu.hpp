@@ -22,13 +22,13 @@
 #include <time.h>
 #include <algorithm>
 #include <vector>
-#include "../game.cpp"
+
 
 class Menu{
 private:
     //private data members 
-    const int windowWidth = 1512;
-    const int windowHeight = 982; 
+    const int windowWidth = 1024;
+    const int windowHeight = 1024; 
     sf::Texture mBackground;
     sf::Text mTitle;
     sf::Font mFont;
@@ -37,12 +37,14 @@ private:
     Button m_0Player;
     Button m_1Player;
     Button mAI_Player;
+    sf::Sprite backgroundSprite;
     // void navigateToNewWindow(int state);
     void mainPage();
     void secondPage();
-    void game();
+    // void game();
     int m1, m2, m3;
     int s1, s2, s3;
+  
 
     //private function members
     //void playMusic();
@@ -50,6 +52,8 @@ public:
     Menu();
     void run();
     void playMusic();
+    int get_player();
+    int get_mode();
 
 };
 

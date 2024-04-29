@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <vector>
+#include <iostream>
 
 class Grid
 {
@@ -23,7 +24,7 @@ public:
 
 	std::vector<std::vector<bool>> getState();
 
-	void setState(std::vector<bool> locationValues);
+	void setState(std::vector<int> locationValues);
 
 	void switchCell(int x, int y);
 

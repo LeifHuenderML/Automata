@@ -29,6 +29,11 @@
 cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 project(Automata)
 
+execute_process(COMMAND xcrun --show-sdk-path OUTPUT_VARIABLE OSX_SYSROOT)
+string(STRIP ${OSX_SYSROOT} OSX_SYSROOT)
+set(CMAKE_OSX_SYSROOT ${OSX_SYSROOT})
+
+
 # Set the path to PyTorch
 set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/pytorch/2.1.2_1")
 
@@ -45,9 +50,24 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+
+
 # Add your executable
 # add_executable(Automata rlEngine/main.cpp )
-add_executable(Automata Menu/Menu.cpp Menu/Button.cpp Menu/test.cpp game.cpp rlEngine/interface.cpp)
+add_executable(
+    Automata
+    Menu/Menu.cpp 
+    Menu/Button.cpp 
+    rlEngine/interface.cpp 
+    main.cpp 
+    gameController/gameLoop.cpp 
+    CellManagement/Cell.cpp 
+    CellManagement/Grid.cpp 
+    CellManagement/HighCell.cpp 
+    CellManagement/HighGrid.cpp 
+    CellManagement/RainbowCell.cpp 
+    CellManagement/RainbowGrid.cpp
+)
 
 # Link libraries
 target_link_libraries(Automata "${TORCH_LIBRARIES}" sfml-graphics sfml-window sfml-system sfml-audio)
