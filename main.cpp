@@ -40,12 +40,14 @@ int main(){
 }
 
 void playMusic(sf::SoundBuffer& buffer){
-    sf::Sound sound;
-    sound.setBuffer(buffer);
-    sound.setLoop(true);
-    sound.play();
+	while(true){
+		sf::Sound sound;
+		sound.setBuffer(buffer);
+		sound.setLoop(true);
+		sound.play();
 
-    while(sound.getStatus() == sf::Sound::Playing){
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-    }
+		while(sound.getStatus() == sf::Sound::Playing){
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+		}
+	}
 }
