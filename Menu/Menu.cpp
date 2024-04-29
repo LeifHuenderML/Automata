@@ -163,39 +163,6 @@ void Menu::playMusic(){
 }
 
 
-
-// cs textbooks
-// modern programming languages 2nd edition by adam boroks webber
-// understanding unix/linux programming by bruce molay 
-
-
-// void Menu::game(){
-//     srand(time(0));
-//     Grid grid;
-//     sf::RenderWindow window(sf::VideoMode(1024, 1024), "Automota");
-
-//     while (window.isOpen())
-
-//     {
-//         // check all the window's events that were triggered since the last iteration of the loop
-//         sf::Event event;
-//         while (window.pollEvent(event))
-
-//         {
-//             // "close requested" event: we close the window
-//             if (event.type == sf::Event::Closed)
-//                 window.close();
-//         }
-//         grid.createImage();
-//         grid.updateGrid();
-//         grid.draw(window);
-
-//         window.display();
-//     }
-
-// }
-
-
 int Menu::get_player(){
     if(s1 == 1){
         return 1;
